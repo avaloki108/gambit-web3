@@ -1,0 +1,27 @@
+{
+  "mutations": {
+    "gambit": [
+      {
+        "filename": "contracts/MyContract.sol",
+        "num_mutants": 10,
+        "mutation_operators": ["binary_operator", "unary_operator", "assignment"]
+      },
+      {
+        "filename": "contracts/AnotherContract.sol",
+        "num_mutants": 5,
+        "mutation_operators": ["require_statement", "function_call"]
+      },
+      {
+        "filename": "contracts/SimpleContract.sol",
+        "num_mutants": 3
+      }
+    ],
+    "manual_mutants": [
+      {
+        "filename": "contracts/ManualMutant.sol",
+        "description": "Manual mutant for regression testing",
+        "content": "// Manual mutant content here"
+      }
+    ]
+  }
+}

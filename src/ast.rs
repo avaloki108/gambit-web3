@@ -323,13 +323,11 @@ impl SolAST {
             end +=
                 rest_of_str[0..m.range().last().unwrap_or_else(|| {
                     panic!("There was a match but last() still returned None.")
-                }) + 1]
-                    .as_bytes()
-                    .len();
+                }) + 1].len();
         }
         self.replace_part(
             source,
-            "/*".to_string() + &String::from_utf8(source[start..end].to_vec()).unwrap() + "*/",
+            "/*".to_string() + core::str::from_utf8(&source[start..end]).unwrap() + "*/",
             start,
             end,
         )

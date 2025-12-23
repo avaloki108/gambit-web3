@@ -33,6 +33,9 @@ pub use test_util::*;
 mod util;
 pub use util::*;
 
+mod web3_mutation_operators;
+pub use web3_mutation_operators::*;
+
 /// Execute the `mutate` command. This returns a mapping from output directories
 /// to generated mutants.
 pub fn run_mutate(

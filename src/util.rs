@@ -18,10 +18,10 @@ pub fn default_gambit_output_directory() -> String {
 pub fn resolve_path_from_str(against: &str, target: &str) -> String {
     let ag = PathBuf::from(&against);
     let tgt = PathBuf::from(&target);
-    return resolve_against_parent(&ag, &tgt)
+    resolve_against_parent(&ag, &tgt)
         .to_str()
         .unwrap()
-        .to_string();
+        .to_string()
 }
 
 /// Resolve the path `target` against `against`'s parent.
@@ -70,11 +70,7 @@ pub fn repair_remapping(remap_str: &str, resolve_against: Option<&str>) -> Strin
         remap_str,
         &resolve_against
     );
-    let against_path_str = if let Some(p) = resolve_against {
-        p
-    } else {
-        "."
-    };
+    let against_path_str = resolve_against.unwrap_or(".");
     let parts: Vec<&str> = remap_str.split(EQUAL).collect();
     assert_eq!(
         parts.len(),

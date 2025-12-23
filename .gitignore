@@ -1,23 +1,54 @@
-# outputs
-gambit_out/
-gambit_tests_out/
+# IDE and Editors
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
 
-# Added by cargo
+# Rust/Cargo
 Cargo.lock
 /target
+*.rlib
 
-# Mac
-.DS_Store
+# Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
 
-# swap files
+# Outputs and Test Results
+gambit_out/
+gambit_tests_out/
+test-results/
+reports/
+
+# Swap and Backup Files
 *.py~
 *.rs~
 *.sol~
 *.conf~
 *.json~
+*.bak
 
-# vscode
-.vscode/
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
 
-# python
-**/__pycache__/
+# Logs
+*.log
+*.tmp
+*.temp
+
+# Build artifacts
+*.so
+*.o
+*.a

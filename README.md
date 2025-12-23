@@ -499,7 +499,7 @@ a single JSON object, your configuration file should contain an array of objects
         "filename": "Blip.sol",
         "contract": "D",
         "functions": ["bang"],
-        "solc": "solc8.12"
+        "solc": "solc8.12",
         "mutations": [
           "binary-op-mutation",
           "swap-arguments-operator-mutation"
@@ -610,6 +610,42 @@ For more details on each mutation type, refer to the [full documentation](https:
 If you have ideas for interesting mutations or other features,
 we encourage you to make a PR or [email](mailto:chandra@certora.com) us.
 
+## Certora Prover Integration
+
+This repository includes a toolkit for integrating Gambit with Certora Prover for automated mutation testing of Solidity specifications. This helps detect vacuous or weak CVL specifications by identifying mutants that survive formal verification.
+
+### Toolkit Components
+
+- `scripts/mutate.sh`: A wrapper script that validates prerequisites, generates mutation-enabled prover configurations, runs certoraMutate, and summarizes results including survivor analysis with spec improvement recommendations.
+
+- `templates/`: Contains configuration templates:
+  - `mutation.conf.json`: Template for Certora Prover configuration with mutations block supporting Gambit-driven mutants and manual regression mutants.
+  - `gambit.json`: Template for Gambit configuration with Solidity remappings, source root, and mutation operator options.
+
+- `examples/`: A minimal working example including:
+  - `SimpleMath.sol`: Sample Solidity contract with arithmetic operations.
+  - `SimpleMath.spec`: CVL specification for formal verification.
+  - `prover.conf`: Prover configuration with mutations block.
+  - `README.md`: Step-by-step instructions for running the example.
+
+- `docs/TROUBLESHOOTING.md`: Comprehensive troubleshooting guide covering certoraMutate failures, Gambit-only debug runs, package path validation, and platform-specific caveats.
+
+### Usage
+
+1. Ensure you have `certora-cli` and `gambit` installed and accessible on your PATH.
+
+2. Copy and customize the templates in `templates/` for your project:
+   - Modify `gambit.json` with your Solidity file paths, remappings, and mutation preferences.
+   - Update `mutation.conf.json` with your CVL spec and contract details.
+
+3. Run `./scripts/mutate.sh --json path/to/your/config.json` to execute mutation testing.
+
+4. Review the output for survivor mutants and actionable recommendations for strengthening your CVL specifications.
+
+See `examples/README.md` for a complete walkthrough of the mutation testing workflow.
+
+This integration focuses on anti-vacuity by treating surviving mutants as gaps in specification strength, providing concrete suggestions for CVL improvements.
+
 ## Credits
 We thank
 [Oliver Flatt](https://www.oflatt.com/) and
@@ -619,4 +655,3 @@ for their excellent contributions to an earlier prototype of Gambit.
 <!-- END SUPPRESS -->
 
 [config-examples]: https://github.com/Certora/gambit/blob/master/benchmarks/config-jsons/
-[test6]: https://github.com/Certora/gambit/blob/master/benchmarks/config-jsons/test6.json

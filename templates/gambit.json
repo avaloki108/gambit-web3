@@ -1,0 +1,12 @@
+{
+  "filename": "contracts/MyContract.sol",
+  "sourceroot": "src",
+  "solc_remappings": {
+    "@openzeppelin": "node_modules/@openzeppelin"
+  },
+  "functions_to_mutate": ["transfer", "approve", "mint"],
+  "contract_name": "MyContract",
+  "solc_version": "0.8.20",
+  "solc_optimize": true,
+  "mutation_operators": ["binary_operator", "unary_operator", "require_statement", "assignment"]
+}
